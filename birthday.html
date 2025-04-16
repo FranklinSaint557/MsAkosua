@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Akosua</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: #fff;
+      flex-direction: column;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+      z-index: 2;
+      animation: fadeIn 2s ease;
+    }
+
+    .card h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #ff69b4;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .card p {
+      font-size: 1.2em;
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    .card .love {
+      margin-top: 15px;
+      font-style: italic;
+      color: #ffb6c1;
+      font-weight: 500;
+    }
+
+    .play-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #ff69b4, #ff1493);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff69b4;
+      font-family: 'Roboto', sans-serif;
+      transition: transform 0.2s ease;
+      z-index: 2;
+      position: relative;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff1493;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff69b4; }
+      to   { text-shadow: 0 0 20px #ff1493; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 30px;
+      height: 40px;
+      background: radial-gradient(circle, #ff69b4 40%, #ff1493);
+      border-radius: 50%;
+      animation: floatUp 10s infinite ease-in;
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #fff;
+      transform: translateX(-50%);
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-110vh) translateX(50px); opacity: 0; }
+    }
+
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 0 0 20px #fff;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(0.2); opacity: 1; }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+        box-shadow: 0 0 40px #ff69b4, 0 0 60px #ff1493, 0 0 80px #ff69b4;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Birthday Akosua Darkwa Aboagye 🎉</h1>
+    <p>May your heart be filled with love and your life with light.</p>
+    <p class="love">With all my love 💖.</p>
+  </div>
+
+  <button class="play-btn" onclick="playMusic()">Play Birthday Music 🎵</button>
+
+  <audio id="bg-music" loop>
+    <source src="C:\Users\apoma\OneDrive\Desktop\music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Balloons
+    for (let i = 0; i < 20; i++) {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.background = `radial-gradient(circle, hsl(${Math.random()*360}, 100%, 70%) 40%, #222)`;
+      balloon.style.animationDelay = (Math.random() * 10) + 's';
+      document.body.appendChild(balloon);
+    }
+
+    // Fireworks
+    function launchFirework() {
+      const firework = document.createElement('div');
+      firework.className = 'firework';
+      firework.style.left = Math.random() * 100 + 'vw';
+      firework.style.top = Math.random() * 50 + 'vh';
+      firework.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 70%)`;
+      document.body.appendChild(firework);
+      setTimeout(() => firework.remove(), 1000);
+    }
+    setInterval(launchFirework, 500);
+
+    // Music play handler
+    function playMusic() {
+      const audio = document.getElementById('bg-music');
+      audio.play().catch(err => {
+        alert('Playback failed 😢. Try clicking again.');
+        console.error(err);
+      });
+    }
+  </script>
+</body>
+</html>
